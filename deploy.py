@@ -397,12 +397,6 @@ mirrors_settings = {
         "installed_path": "",
     },
     
-        'ssrshare': {
-        'domain': None,
-        'cfg': [('more_configs/config_ssrshare.py', 'config.py'), ],
-        "certs": {},
-        "installed_path": "",
-    },
 }
 
 infoprint('OneKey deploy script for zmirror. version', __VERSION__)
@@ -592,10 +586,10 @@ try:
     {youtubePC}  4. youtube (PC ONLY)
     {youtubeMobile}  5. youtube (Mobile ONLY)
     {instagram}  6. instagram
-    {ssrsshare}  7. ssrshare
+
       0. Go to next steps. (OK, I have selected all mirror(s) I want to deploy)
 
-    input 0-7: """.format(
+    input 0-6: """.format(
                 google='[SELECTED]' if 'google' in mirrors_to_deploy else (
                     "[INSTALLED]" if mirrors_settings["google"]["installed_path"] else ""),
 
@@ -614,8 +608,6 @@ try:
                 instagram='[SELECTED]' if 'instagram' in mirrors_to_deploy else (
                     "[INSTALLED]" if mirrors_settings["instagram"]["installed_path"] else ""),
 
-                ssrshare='[SELECTED]' if 'ssrshare' in mirrors_to_deploy else (
-                    "[INSTALLED]" if mirrors_settings["ssrshare"]["installed_path"] else ""),
             )
 
         )
@@ -634,8 +626,8 @@ try:
 
         if _input == 0:
             break
-        if not (0 <= _input <= 7):
-            errprint('please input correct number (0-7), only select one mirror a time\n'
+        if not (0 <= _input <= 6):
+            errprint('please input correct number (0-6), only select one mirror a time\n'
                      '-------------------------\n\n')
             continue
 
@@ -647,7 +639,7 @@ try:
             4: "youtubePC",
             5: "youtubeMobile",
             6: "instagram",
-            7: "ssrshare",
+
         }[_input]
 
         # 镜像已经安装, 则不允许选择
